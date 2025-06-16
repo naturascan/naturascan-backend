@@ -1,0 +1,369 @@
+[
+    {
+      "id": "nddekzkkzksjxns,jk,sjsksksnnsn", 
+      "type": "naturascan",
+      "date": 124537282,  
+      "photo": Uint8List.fromList([1, 2, 3, 4, 5]),  
+      "naturascan": {
+          "structure": "Your_Structure_Name",
+          "zone_id": 40
+          "port_depart": "Your_Departure_Port",
+          "port_arrivee": "Your_Arrival_Port",
+          "heure_depart_port": 1252009,
+          "heure_arrivee_port": 1252009,
+          "duree_sortie": 900,
+
+          "responsable": [4,5 ] ,
+          "skipper":[4,6],
+          "photographe": [2,6] ,
+          "observateurs":[54,43 ] ,
+          "other_user": [10,43 ] ,
+          
+          "nbre_observateurs": 2,
+          "type_bateau": "Your_Boat_Type",
+          "nom_bateau": "Your_Boat_Name",
+          "hauteur_bateau": 2.5,  
+          "heure_utc": "Your_UTC_Time",
+          "distance_parcourue": 12.5,  
+          "superficie_echantillonnee": 10.0,  
+          "remarque_depart": "Your_Departure_Remarks",
+          "remarque_arrivee": "Your_Arrival_Remarks",
+          "departure_weather_report":{
+            "id": "1", 
+            "sea_state": "Calme",
+            "cloud_cover": "Nuageux",
+            "visibility": "Bonne",
+            "wind_force": "Faible",
+            "wind_direction": "Est",
+            "wind_speed": "5 km/h"
+          }
+          ,
+          "arrival_weather_report": {
+            "id": "1", 
+            "sea_state": "Calme",
+            "cloud_cover": "Nuageux",
+            "visibility": "Bonne",
+            "wind_force": "Faible",
+            "wind_direction": "Est",
+            "wind_speed": "5 km/h"
+          },
+          "marked": false,
+          "etapes":[
+            {
+              "id": "YOUR_ID",
+              "shipping_id": "YOUR_SHIPPING_ID",
+              "nom": "YOUR_NAME",
+              "description": "YOUR_DESCRIPTION",
+              "heure_depart_port": 8639393,
+              "heure_arrivee_port": 8639393,
+              "point_de_passage": {
+                "id": 1,
+                "nom": "Point A",
+                "latitude": {
+                  "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                  "deg_dec": 2.329928292092 
+                },
+                "longitude": {
+                  "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                  "deg_dec": 2.329928292092 
+                },
+                "description": "Premier point de passage",
+                "zone_id": 1
+              },
+              "departure_weather_report": {
+                "id": "1", 
+                "sea_state": "Calme",
+                "cloud_cover": "Nuageux",
+                "visibility": "Bonne",
+                "wind_force": "Faible",
+                "wind_direction": "Est",
+                "wind_speed": "5 km/h"
+              },
+              "arrival_weather_report": {
+                "id": "1", 
+                "sea_state": "Calme",
+                "cloud_cover": "Nuageux",
+                "visibility": "Bonne",
+                "wind_force": "Faible",
+                "wind_direction": "Est",
+                "wind_speed": "5 km/h"
+              }
+            }
+          ],
+          "observations": [
+            {
+              "id": "YOUR_ID",
+              "shipping_id": "YOUR_SHIPPING_ID",
+              "date": 26252825525,
+              "type": 1,
+              "animal": {
+                "espece": {
+                  "id": "YOUR_SPECIES_ID",
+                  "common_name": "YOUR_SPECIES_COMMON_NAME",
+                  "scientific_name": "YOUR_SPECIES_SCIENTIFIC_NAME",
+                  "description": "YOUR_SPECIES_DESCRIPTION",
+                  "category_id": "YOUR_SPECIES_CATEGORY_ID"
+                },                
+                "taille": "YOUR_ANIMAL_SIZE",
+                "nbre_estime": 120,
+                "nbre_mini": 100,
+                "nbre_maxi": 103,
+                "nbre_jeunes": 20,
+                "nbre_nouveau_ne": 30,
+                "structure_groupe": "YOUR_GROUP_STRUCTURE",
+                "sous_group": true,
+                "nbre_sous_groupes": 45,
+                "nbre_indiv_sous_groupe": 288,
+                "comportement_surface": "YOUR_SURFACE_BEHAVIOR",
+                "vitesse": "YOUR_SPEED",
+                "reaction_bateau": "YOUR_VESSEL_REACTION",
+                "distance_estimee": "YOUR_ESTIMATED_DISTANCE",
+                "gisement": "YOUR_BEARING",
+                "element_detection": "YOUR_DETECTION_ELEMENT",
+                "especes_associees": "YOUR_ASSOCIATED_SPECIES",
+                "heure_debut": 5267515165151,
+                "heure_fin": 5267515165151,
+                "location_d": {
+                  "longitude": {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  },
+                  "latitude":  {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  }
+                },
+                "location_f": {
+                  "longitude": {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  },
+                  "latitude":  {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  }
+                },
+                "vitesse_navire": "YOUR_VESSEL_SPEED",
+                "weather_report": {
+                  "id": "1", 
+                  "sea_state": "Calme",
+                  "cloud_cover": "Nuageux",
+                  "visibility": "Bonne",
+                  "wind_force": "Faible",
+                  "wind_direction": "Est",
+                  "wind_speed": "5 km/h"
+                },
+                "activites_humaines_associees": "YOUR_ASSOCIATED_HUMAN_ACTIVITIES",
+                "effort": false,
+                "commentaires": "YOUR_COMMENTS",
+                "photos": true,
+                "images": null
+              },  
+              "bird": null,   
+              "waste": null,  
+              "created_at": "YOUR_CREATION_DATE_TIME"
+            },
+            {
+              "id": "YOUR_ID",
+              "shipping_id": "YOUR_SHIPPING_ID",
+              "date": 26252825525,
+              "type": 1,
+              "animal": null,  
+              "bird": {
+                "espece": {
+                  "id": "YOUR_SPECIES_ID",
+                  "common_name": "YOUR_SPECIES_COMMON_NAME",
+                  "scientific_name": "YOUR_SPECIES_SCIENTIFIC_NAME",
+                  "description": "YOUR_SPECIES_DESCRIPTION",
+                  "category_id": "YOUR_SPECIES_CATEGORY_ID"
+                },
+                "nbre_estime": 23,
+                "presence_jeune": false,
+                "etat_groupe": "YOUR_GROUP_STATE",
+                "comportement": "YOUR_BEHAVIOR",
+                "reaction_bateau": "YOUR_VESSEL_REACTION",
+                "distance_estimee": "YOUR_ESTIMATED_DISTANCE",
+                "especes_associees": "YOUR_ASSOCIATED_SPECIES",
+                "heure_debut": 3837282892,
+                "heure_fin": 3837282892,
+                "location_d": {
+                  "longitude": {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  },
+                  "latitude":  {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  }
+                },
+                "location_f": {
+                  "longitude": {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  },
+                  "latitude":  {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  }
+                },
+                "vitesse_navire": "YOUR_VESSEL_SPEED",
+                "weather_report": {
+                  "id": "1", 
+                  "sea_state": "Calme",
+                  "cloud_cover": "Nuageux",
+                  "visibility": "Bonne",
+                  "wind_force": "Faible",
+                  "wind_direction": "Est",
+                  "wind_speed": "5 km/h"
+                },
+                "activites_humaines_associees": "YOUR_ASSOCIATED_HUMAN_ACTIVITIES",
+                "effort": false,
+                "commentaires": "YOUR_COMMENTS",
+                "photos": true,
+                "images": null
+              },   
+              "waste": null,  
+              "created_at": "YOUR_CREATION_DATE_TIME"
+            },
+            {
+              "id": "YOUR_ID",
+              "shipping_id": "YOUR_SHIPPING_ID",
+              "date": 26252825525,
+              "type": 1,
+              "animal": null,  
+              "bird": null,   
+              "waste": {
+                "nature_deche": "YOUR_WASTE_TYPE",
+                "estimated_size": "YOUR_ESTIMATED_WASTE_SIZE",
+                "matiere": "YOUR_WASTE_MATERIAL",
+                "color": "YOUR_WASTE_COLOR",
+                "deche_peche": true, 
+                "picked": false,   
+                "heure_debut": 383827282,
+                "location": {
+                  "longitude": {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  },
+                  "latitude":  {
+                    "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                    "deg_dec": 2.329928292092 
+                  }
+                },
+                "vitesse_navire": "YOUR_VESSEL_SPEED",
+                "weather_report": {
+                  "id": "1", 
+                  "sea_state": "Calme",
+                  "cloud_cover": "Nuageux",
+                  "visibility": "Bonne",
+                  "wind_force": "Faible",
+                  "wind_direction": "Est",
+                  "wind_speed": "5 km/h"
+                },
+                "effort": true,
+                "commentaires": "YOUR_COMMENTS",
+                "photos": false,
+                "images": null
+              },  
+              "created_at": "YOUR_CREATION_DATE_TIME"
+            }
+          ],
+          "gps": [
+            {
+              "id": "YOUR_TRACK_ID",
+              "longitude": 4.389288,
+              "latitude": 6.8372828,
+              "device": "YOUR_DEVICE_ID",
+              "shipping_id": "YOUR_SHIPPING_ID",
+              "inObservation": true
+            }
+          ]
+        },  
+      "obstrace": null,  
+      "finished": true,  
+      "synchronised": false,  
+      "created_at": "your_created_at_value"  
+    },
+    {
+      "id": "nddekzkkzksjxns,jk,sjsksksnnsn", 
+      "type": "obstrace",
+      "date": 124537282,  
+      "photo": Uint8List.fromList([1, 2, 3, 4, 5]),  
+      "naturascan": null,  
+
+      "obstrace": {
+        "plage": "YOUR_BEACH_NAME",
+        "end1": {
+          "longitude": {
+            "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+            "deg_dec": 2.329928292092 
+          },
+          "latitude":  {
+            "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+            "deg_dec": 2.329928292092 
+          }
+        },
+        "end2":{
+          "longitude": {
+            "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+            "deg_dec": 2.329928292092 
+          },
+          "latitude":  {
+            "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+            "deg_dec": 2.329928292092 
+          }
+        },
+        "nbre_observateurs": 54,
+        "observateurs":[
+          {
+            "id": "1",  
+            "name": "John Doe",
+            "firstname": "John",
+            "email": "john.doe@example.com",
+            "mobileNumber": "+1234567890",  
+            "address": "123 Main Street",
+            "roles": [], 
+            "created_at": "2024-04-24T17:52:00.000Z"  
+          }
+        ],
+        "suivi": "YOUR_FOLLOW_UP_STATUS",
+        "prospection":{
+          "heure_debut": 55667765,
+          "heure_fin": 55667765
+        },
+        "weatherReport": {
+          "id": "1", 
+          "sea_state": "Calme",
+          "cloud_cover": "Nuageux",
+          "visibility": "Bonne",
+          "wind_force": "Faible",
+          "wind_direction": "Est",
+          "wind_speed": "5 km/h"
+        },
+        "traces": [
+          {
+            "location": {
+              "longitude": {
+                "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                "deg_dec": 2.329928292092 
+              },
+              "latitude":  {
+                "deg_min_sec": "YOUR_DEGREES_MINUTES_SECONDS_FORMAT",  
+                "deg_dec": 2.329928292092 
+              }
+            },
+            "photos": [
+              Uint8List.fromList([1, 2, 3, 4, 5]),
+              Uint8List.fromList([1, 2, 3, 4, 5])
+            ]
+          }
+        ],
+        "remark": "YOUR_REMARKS"
+      },
+      
+        
+      "finished": true,  
+      "synchronised": false,  
+      "created_at": "your_created_at_value"  
+      }
+  ]

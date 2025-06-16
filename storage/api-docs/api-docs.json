@@ -1,0 +1,3957 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Naturascan API",
+        "description": "Naturascan API",
+        "contact": {
+            "name": "Gilles",
+            "email": "gillesakakpo01@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/animals": {
+            "get": {
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "List all animals",
+                "operationId": "ccbaa81d5cab9fd8ecf62bd8eb16c5e7",
+                "responses": {
+                    "200": {
+                        "description": "List all animals"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "Create a new animal",
+                "operationId": "e00d191e350ca8d1f681495d5fee9226",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Animal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new animal"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/animals/{id}": {
+            "get": {
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "Show animal by ID",
+                "operationId": "142c5901fbcb1495bb576bdd61e57e5d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the animal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show animal by ID"
+                    },
+                    "404": {
+                        "description": "Animal not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "Update animal by ID",
+                "operationId": "3141d4332cac08ffdd4d7a75516a5817",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the animal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Animal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update animal by ID"
+                    },
+                    "404": {
+                        "description": "Animal not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Animal"
+                ],
+                "summary": "Delete animal by ID",
+                "operationId": "cddc22dab5f3305e7fe7322231644fa2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the animal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete animal by ID"
+                    },
+                    "404": {
+                        "description": "Animal not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Se connecter",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "description": "Champs d'authentification",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "utilisateur@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "motdepasse"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Connexion réussie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "202": {
+                        "description": "Compte bloqué",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validation"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Se déconnecter",
+                "operationId": "authLogout",
+                "responses": {
+                    "200": {
+                        "description": "Déconnexion réussie"
+                    },
+                    "401": {
+                        "description": "Non autorisé"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Obtenir les informations de l'utilisateur authentifié",
+                "operationId": "authMe",
+                "responses": {
+                    "200": {
+                        "description": "Récupération réussie des informations de l'utilisateur authentifié",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Non autorisé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token invalide"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Inscription d'un nouvel utilisateur",
+                "operationId": "authRegister",
+                "requestBody": {
+                    "description": "Champs d'inscription d'un nouvel utilisateur",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "firstname": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "email": {
+                                        "description": "Adresse email unique de l'utilisateur",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@yopmail.com"
+                                    },
+                                    "password": {
+                                        "description": "Mot de passe de l'utilisateur (min. 8 caractères)",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Mot de passe de l'utilisateur (min. 8 caractères)",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    },
+                                    "mobile_number": {
+                                        "description": "Téléphone",
+                                        "type": "string",
+                                        "example": "02056852"
+                                    },
+                                    "adress": {
+                                        "description": "Adresse",
+                                        "type": "string",
+                                        "example": "johndoe"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inscription réussie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "votre_access_token"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de validations"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/refreshToken": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Actualiser le jeton d'authentification de l'utilisateur",
+                "operationId": "authRefreshToken",
+                "responses": {
+                    "200": {
+                        "description": "Jeton d'authentification actualisé avec succès",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "description": "Le nouveau jeton d'authentification actualisé",
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "description": "Type de jeton (Bearer)",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Accès non autorisé (token d'authentification manquant ou invalide)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Token invalide",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/forgotPassword": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Demander un code de reinitialisation de mot de passe",
+                "operationId": "authForgotPassword",
+                "responses": {
+                    "200": {
+                        "description": "Code de reinitialisation envoyé",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Nous vous avons envoyé un code de réinitialisation!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/updatePassword": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Reinitialisation de mot de passe",
+                "operationId": "authUpdatePassword",
+                "requestBody": {
+                    "description": "Champs pour reinitialiser le mot de passe",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "code": {
+                                        "type": "string",
+                                        "example": "4568"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "motdepasse"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Mot de passe reinitialisé!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mot de passe reinitialisé!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Erreurs de validations!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Code invalide",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Code invalide!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/changePassword": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Changer le mot de passe",
+                "operationId": "authChangePassword",
+                "requestBody": {
+                    "description": "Champs pour changer le mot de passe",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "old_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "ancienmotdepasse"
+                                    },
+                                    "new_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "nouveaumotdepasse"
+                                    },
+                                    "new_password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "nouveaumotdepasse"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Mot de passe changé avec succès!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mot de passe changé avec succès!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Mot de passe actuel incorrect",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mot de passe actuel incorrect!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erreurs de validations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Erreurs de validations!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/observers": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Obtenir la liste des observateurs",
+                "operationId": "getObservers",
+                "responses": {
+                    "200": {
+                        "description": "Liste des observateurs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/deleteAccount": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Supprimer le compte de l'utilisateur authentifié",
+                "operationId": "deleteAccount",
+                "responses": {
+                    "200": {
+                        "description": "Compte supprimé avec succès!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Compte supprimé avec succès!",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/birds": {
+            "get": {
+                "tags": [
+                    "Bird"
+                ],
+                "summary": "List all birds",
+                "operationId": "2d011bb59cb7f500ae3aa871f6c548ff",
+                "responses": {
+                    "200": {
+                        "description": "List all birds"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Bird"
+                ],
+                "summary": "Create a new bird",
+                "operationId": "b5bd43bd274b1fc4551e3dfca28307e0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bird"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new bird"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/birds/{id}": {
+            "get": {
+                "tags": [
+                    "Bird"
+                ],
+                "summary": "Show bird by ID",
+                "operationId": "35b36666302751e6787865d019c3cb08",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the bird",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show bird by ID"
+                    },
+                    "404": {
+                        "description": "Bird not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Bird"
+                ],
+                "summary": "Update bird by ID",
+                "operationId": "6546eddfa87fd843481f56c04ba7c114",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the bird",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bird"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update bird by ID"
+                    },
+                    "404": {
+                        "description": "Bird not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Bird"
+                ],
+                "summary": "Delete bird by ID",
+                "operationId": "3cefd59225db9cfbf66fc416747aaabb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the bird",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete bird by ID"
+                    },
+                    "404": {
+                        "description": "Bird not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "List all category species",
+                "operationId": "3f5817a34833d0a1f4af4548dd3aeaba",
+                "responses": {
+                    "200": {
+                        "description": "List all category species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create a new category species",
+                "operationId": "71fcad552bb0eaba9fb191fd8d8dcab0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new category species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Show category species by ID",
+                "operationId": "c68e76d323c008827a9e47398b1583de",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show category species by ID"
+                    },
+                    "404": {
+                        "description": "Category species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update category species by ID",
+                "operationId": "0e686b2748211cc688333ed705dc111f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update category species by ID"
+                    },
+                    "404": {
+                        "description": "Category species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete category species by ID",
+                "operationId": "4c12e22a7f8c617bd83bfa1fdc05428d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete category species by ID"
+                    },
+                    "404": {
+                        "description": "Category species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/dechets": {
+            "get": {
+                "tags": [
+                    "Dechet"
+                ],
+                "summary": "List all dechets",
+                "operationId": "a6cb4960d9bc6b987cb65b419dcabb35",
+                "responses": {
+                    "200": {
+                        "description": "List all dechets"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Dechet"
+                ],
+                "summary": "Create a new dechet",
+                "operationId": "876081336c41e684efa4ca45e75ead35",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Dechet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new dechet"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/dechets/{id}": {
+            "get": {
+                "tags": [
+                    "Dechet"
+                ],
+                "summary": "Show dechet by ID",
+                "operationId": "542634cc6cf72abf117f24738b5f8911",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dechet to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show dechet by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Dechet"
+                ],
+                "summary": "Update dechet by ID",
+                "operationId": "4da961a2a4ead048519ea414e56ee214",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dechet to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Dechet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update dechet by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Dechet"
+                ],
+                "summary": "Delete dechet by ID",
+                "operationId": "f6da278e43f53a85475ab3a2087437f5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of dechet to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete dechet by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/especes": {
+            "get": {
+                "tags": [
+                    "Espece"
+                ],
+                "summary": "List all espece species",
+                "operationId": "99b2fcfaa92d93625782773193fd6c29",
+                "responses": {
+                    "200": {
+                        "description": "List all espece species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Espece"
+                ],
+                "summary": "Create a new espece species",
+                "operationId": "97a2369003e032742d2182a8c1d1f210",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Espece"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new espece species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/especes/{id}": {
+            "get": {
+                "tags": [
+                    "Espece"
+                ],
+                "summary": "Show espece species by ID",
+                "operationId": "544724144b7bd94139f98cdeb8a349d8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the espece species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show espece species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Espece"
+                ],
+                "summary": "Update espece species by ID",
+                "operationId": "248c3a19b23c99b1b6c93386d049abf5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the espece species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Espece"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update espece species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Espece"
+                ],
+                "summary": "Delete espece species by ID",
+                "operationId": "1cba9f9ddf18f587055f1447c3664b64",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the espece species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete espece species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/etapes": {
+            "get": {
+                "tags": [
+                    "Etape"
+                ],
+                "summary": "List all etape species",
+                "operationId": "32b161076bb55d01b82545aeeb3fd7fb",
+                "responses": {
+                    "200": {
+                        "description": "List all etape species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Etape"
+                ],
+                "summary": "Create a new etape species",
+                "operationId": "ca69a7a3c28782350a9369e966928276",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Etape"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new etape species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/etapes/{id}": {
+            "get": {
+                "tags": [
+                    "Etape"
+                ],
+                "summary": "Show etape species by ID",
+                "operationId": "27fe5bf0cb2d5b2a9bea3545e1ca8534",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the etape species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show etape species by ID"
+                    },
+                    "404": {
+                        "description": "Etape species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Etape"
+                ],
+                "summary": "Update etape species by ID",
+                "operationId": "01a6536ea5f4c693a59a3350ab4b5f9a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the etape species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Etape"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update etape species by ID"
+                    },
+                    "404": {
+                        "description": "Etape species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Etape"
+                ],
+                "summary": "Delete etape species by ID",
+                "operationId": "19bae0da57a20eac32424860d72f837d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the etape species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete etape species by ID"
+                    },
+                    "404": {
+                        "description": "Etape species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/exports": {
+            "get": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "List all export",
+                "operationId": "e0ed4828e324ae2b9c128777a39dd42c",
+                "responses": {
+                    "200": {
+                        "description": "List all export"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Create a new export",
+                "operationId": "8942c4a50deb677318ce81cb7888e011",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Export"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new export"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/exports/export": {
+            "get": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Export all export",
+                "operationId": "fa35191d66599cfd0e22cbd930b6f356",
+                "responses": {
+                    "200": {
+                        "description": "Export all export"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/exports/{id}": {
+            "get": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Show export by ID",
+                "operationId": "3c0de553124de615d8cc19d17809a7ec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the export",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show export by ID"
+                    },
+                    "404": {
+                        "description": "Export not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Update export by ID",
+                "operationId": "5ae15b04929d9b4b88c106ef4a562b2c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the export",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Export"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update export by ID"
+                    },
+                    "404": {
+                        "description": "Export not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Export"
+                ],
+                "summary": "Delete export by ID",
+                "operationId": "d957f995fb3b00e514498c67ee213515",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the export",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete export by ID"
+                    },
+                    "404": {
+                        "description": "Export not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/gps_tracks": {
+            "get": {
+                "tags": [
+                    "GpsTrack"
+                ],
+                "summary": "List all gps_track species",
+                "operationId": "25566d3e97b4e1bf281b0cdadcac3968",
+                "responses": {
+                    "200": {
+                        "description": "List all gps_track species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "GpsTrack"
+                ],
+                "summary": "Create a new gps_track species",
+                "operationId": "1a3c9f08823dc4b6e139fc108762347a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GpsTrack"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new gps_track species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/gps_tracks/{id}": {
+            "get": {
+                "tags": [
+                    "GpsTrack"
+                ],
+                "summary": "Show gps_track species by ID",
+                "operationId": "9ac29ebdec3e63ef5c5ef10377b476a3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gps_track species",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show gps_track species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "GpsTrack"
+                ],
+                "summary": "Update gps_track species by ID",
+                "operationId": "e5a14d26a033ca6b9a20d7233250eed7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gps_track species",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GpsTrack"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update gps_track species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "GpsTrack"
+                ],
+                "summary": "Delete gps_track species by ID",
+                "operationId": "5e1485ac0e370e9d412e0f5193e7ad95",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gps_track species",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete gps_track species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/observateurs": {
+            "get": {
+                "tags": [
+                    "Observateur"
+                ],
+                "summary": "List all observateurs",
+                "operationId": "687c6bf1fc416a1f82da3946b464d492",
+                "responses": {
+                    "200": {
+                        "description": "List all observateurs"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Observateur"
+                ],
+                "summary": "Create a new observateur",
+                "operationId": "8a002f0c8cb393b2211c74edb4fd032a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Observateur"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new observateur"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/observateurs/{id}": {
+            "get": {
+                "tags": [
+                    "Observateur"
+                ],
+                "summary": "Display a specific observateur",
+                "operationId": "8bc227626b12c02a19019450986f5c22",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of observateur to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Display a specific observateur"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Observateur"
+                ],
+                "summary": "Update a specific observateur",
+                "operationId": "afd210aef02e52691e079930abfe37bc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of observateur to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Observateur"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update a specific observateur"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Observateur"
+                ],
+                "summary": "Delete a specific observateur",
+                "operationId": "8607c1c376acc5f3c539abc0be46ec1e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of observateur to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete a specific observateur"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/observations": {
+            "get": {
+                "tags": [
+                    "Observation"
+                ],
+                "summary": "List all observation species",
+                "operationId": "23ca8dd7b03edddffba2e2ff578ca9b2",
+                "responses": {
+                    "200": {
+                        "description": "List all observation species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Observation"
+                ],
+                "summary": "Create a new observation species",
+                "operationId": "b3923335c07e2fdf3f812e069a90467c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Observation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new observation species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/observations/{id}": {
+            "get": {
+                "tags": [
+                    "Observation"
+                ],
+                "summary": "Show observation species by ID",
+                "operationId": "943b1b4d6a7022840a4aec1e8f74ebf2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the observation species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show observation species by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Observation"
+                ],
+                "summary": "Update observation species by ID",
+                "operationId": "5ff20536907b3e56378285bfa19166c3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the observation species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Observation"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update observation species by ID"
+                    },
+                    "404": {
+                        "description": "Observation species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Observation"
+                ],
+                "summary": "Delete observation species by ID",
+                "operationId": "78c5e97deb347d7d8a7781d8d285fa85",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the observation species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete observation species by ID"
+                    },
+                    "404": {
+                        "description": "Observation species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/point_de_passages": {
+            "get": {
+                "tags": [
+                    "PointDePassage"
+                ],
+                "summary": "List all point_de_passages",
+                "operationId": "852f18d1e7c4568079c479886e576487",
+                "responses": {
+                    "200": {
+                        "description": "List all point_de_passages"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "PointDePassage"
+                ],
+                "summary": "Create a new point_de_passage",
+                "operationId": "379465020dc1a67be8b065b3ede56fcf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PointDePassage"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new point_de_passage"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/point_de_passages/{id}": {
+            "get": {
+                "tags": [
+                    "PointDePassage"
+                ],
+                "summary": "Show point_de_passage by ID",
+                "operationId": "823bca98a17ee566756718d5775433d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the point_de_passage",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show point_de_passage by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "PointDePassage"
+                ],
+                "summary": "Update point_de_passage by ID",
+                "operationId": "6003912c10acacca6602c8161e9374d9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the point_de_passage",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PointDePassage"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update point_de_passage by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "PointDePassage"
+                ],
+                "summary": "Delete point_de_passage by ID",
+                "operationId": "dbe91a722c45d9ac5939ebc2e10b3acd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the point_de_passage",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete point_de_passage by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sorties": {
+            "get": {
+                "tags": [
+                    "Sortie"
+                ],
+                "summary": "List all sorties",
+                "operationId": "21c6f7d2ce408b5f7535762ec5fe556a",
+                "responses": {
+                    "200": {
+                        "description": "List all sorties"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Sortie"
+                ],
+                "summary": "Create a new sortie",
+                "operationId": "6b9ff8f122a9348379ee3ac9a4539fcc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sortie"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new sortie"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sorties/{id}": {
+            "get": {
+                "tags": [
+                    "Sortie"
+                ],
+                "summary": "Show sortie by ID",
+                "operationId": "b6f6f06123b1f3697b9b7396918a11ce",
+                "responses": {
+                    "200": {
+                        "description": "Show sortie by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Sortie"
+                ],
+                "summary": "Update sortie by ID",
+                "operationId": "80417e5802469b442e3bee3d658f7b66",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Sortie"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update sortie by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sortie"
+                ],
+                "summary": "Delete sortie by ID",
+                "operationId": "41cd94d80adc2e59edca3de59963b858",
+                "responses": {
+                    "200": {
+                        "description": "Delete sortie by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sortie_naturascan": {
+            "get": {
+                "tags": [
+                    "SortieNaturascan"
+                ],
+                "summary": "List all sortie_naturascan species",
+                "operationId": "38968dfeafc3d6ba4031844edddd71bd",
+                "responses": {
+                    "200": {
+                        "description": "List all sortie_naturascan species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SortieNaturascan"
+                ],
+                "summary": "Create a new sortie_naturascan species",
+                "operationId": "27d5dd0009f9bc8fecf0115e89397d27",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SortieNaturascan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new sortie_naturascan species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sortie_naturascan/{id}": {
+            "get": {
+                "tags": [
+                    "SortieNaturascan"
+                ],
+                "summary": "Show sortie_naturascan species by ID",
+                "operationId": "b7dda4dfe6c242be441bb83563c10234",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_naturascan species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show sortie_naturascan species by ID"
+                    },
+                    "404": {
+                        "description": "SortieNaturascan species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SortieNaturascan"
+                ],
+                "summary": "Update sortie_naturascan species by ID",
+                "operationId": "264a6c998389112a759aba333ba20c1f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_naturascan species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SortieNaturascan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update sortie_naturascan species by ID"
+                    },
+                    "404": {
+                        "description": "SortieNaturascan species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SortieNaturascan"
+                ],
+                "summary": "Delete sortie_naturascan species by ID",
+                "operationId": "c948b696dd3655dc35de6ce61d5129cb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_naturascan species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete sortie_naturascan species by ID"
+                    },
+                    "404": {
+                        "description": "SortieNaturascan species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sortie_obstrace": {
+            "get": {
+                "tags": [
+                    "SortieObstrace"
+                ],
+                "summary": "List all sortie_obstrace species",
+                "operationId": "46a7a1c95ea2f63bd00b8be4817af79e",
+                "responses": {
+                    "200": {
+                        "description": "List all sortie_obstrace species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "SortieObstrace"
+                ],
+                "summary": "Create a new sortie_obstrace species",
+                "operationId": "89de0a139e915d7b69159c6cf4d7e5fe",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SortieObstrace"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new sortie_obstrace species"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sortie_obstrace/{id}": {
+            "get": {
+                "tags": [
+                    "SortieObstrace"
+                ],
+                "summary": "Show sortie_obstrace species by ID",
+                "operationId": "a432266ccb558b0964ed6385d4897d68",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_obstrace species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show sortie_obstrace species by ID"
+                    },
+                    "404": {
+                        "description": "SortieObstrace species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "SortieObstrace"
+                ],
+                "summary": "Update sortie_obstrace species by ID",
+                "operationId": "10279d94bae623173c4dd5b6a3b2cdab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_obstrace species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SortieObstrace"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update sortie_obstrace species by ID"
+                    },
+                    "404": {
+                        "description": "SortieObstrace species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "SortieObstrace"
+                ],
+                "summary": "Delete sortie_obstrace species by ID",
+                "operationId": "9eecaa647f639844f1bc36701a9da407",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sortie_obstrace species",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete sortie_obstrace species by ID"
+                    },
+                    "404": {
+                        "description": "SortieObstrace species not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/sync": {
+            "post": {
+                "tags": [
+                    "Sync"
+                ],
+                "summary": "Sync data",
+                "operationId": "4691e47dde1d5a7765b503349341802f",
+                "requestBody": {
+                    "description": "Sortie",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "type": "string",
+                                        "example": "data"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sync data"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/wastes": {
+            "get": {
+                "tags": [
+                    "Wastes"
+                ],
+                "summary": "List all wastes",
+                "operationId": "54435fe1109617fd45d3064d0d65f874",
+                "responses": {
+                    "200": {
+                        "description": "List all wastes"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Wastes"
+                ],
+                "summary": "Create a new waste",
+                "operationId": "7db06d85e8f36ed9254bd087e6a8d74a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Waste"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new waste"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/wastes/{id}": {
+            "get": {
+                "tags": [
+                    "Wastes"
+                ],
+                "summary": "Show waste by ID",
+                "operationId": "eda0402f269cb0923596684f49589b02",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the waste",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show waste by ID"
+                    },
+                    "404": {
+                        "description": "Waste not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Wastes"
+                ],
+                "summary": "Update waste by ID",
+                "operationId": "91b7d54c39535aaa0a736f33f6a80522",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the waste",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Waste"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update waste by ID"
+                    },
+                    "404": {
+                        "description": "Waste not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Wastes"
+                ],
+                "summary": "Delete waste by ID",
+                "operationId": "5f67df5693cd91b4167c993c8ee14530",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the waste",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete waste by ID"
+                    },
+                    "404": {
+                        "description": "Waste not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/weather-reports": {
+            "get": {
+                "tags": [
+                    "WeatherReports"
+                ],
+                "summary": "List all weather reports",
+                "operationId": "041d8fa4e1beddf8239156a1fec5d74a",
+                "responses": {
+                    "200": {
+                        "description": "List all weather reports"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "WeatherReports"
+                ],
+                "summary": "Create a new weather report",
+                "operationId": "f2b876b5ddc8973618fdc2a3f37d690a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WeatherReport"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new weather report"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/weather-reports/{id}": {
+            "get": {
+                "tags": [
+                    "WeatherReports"
+                ],
+                "summary": "Show weather report by ID",
+                "operationId": "00cc11751626e7115a5314a9cacd5934",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the weather report",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show weather report by ID"
+                    },
+                    "404": {
+                        "description": "Weather report not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "WeatherReports"
+                ],
+                "summary": "Update weather report by ID",
+                "operationId": "97aaaf626b71ede1da409b2a9702ff72",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the weather report",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/WeatherReport"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update weather report by ID"
+                    },
+                    "404": {
+                        "description": "Weather report not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "WeatherReports"
+                ],
+                "summary": "Delete weather report by ID",
+                "operationId": "196774f75aa213f6122fca7cc89aad36",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the weather report",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete weather report by ID"
+                    },
+                    "404": {
+                        "description": "Weather report not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/zones": {
+            "get": {
+                "tags": [
+                    "Zone"
+                ],
+                "summary": "List all zones",
+                "operationId": "9274bd01aa8703edb5bf227272af452c",
+                "responses": {
+                    "200": {
+                        "description": "List all zones"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Zone"
+                ],
+                "summary": "Create a new zone",
+                "operationId": "b78fb2a471e00ccac841a3505ee267fc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Zone"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Create a new zone"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/zones/{id}": {
+            "get": {
+                "tags": [
+                    "Zone"
+                ],
+                "summary": "Show zone by ID",
+                "operationId": "2bf072345c9a3269f676506dba17015c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the zone",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show zone by ID"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Zone"
+                ],
+                "summary": "Update zone by ID",
+                "operationId": "2e5b9595512c316287725799451991ed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the zone",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Zone"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update zone by ID"
+                    },
+                    "404": {
+                        "description": "Zone not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Zone"
+                ],
+                "summary": "Delete zone by ID",
+                "operationId": "c0ffad4b6562d81670d3eeb48a9f9ffe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the zone",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete zone by ID"
+                    },
+                    "404": {
+                        "description": "Zone not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Animal": {
+                "title": "Animal",
+                "description": "Animal",
+                "properties": {
+                    "taille": {
+                        "title": "taille",
+                        "type": "string"
+                    },
+                    "nbre_estime": {
+                        "title": "nbre_estime",
+                        "type": "integer"
+                    },
+                    "nbre_mini": {
+                        "title": "nbre_mini",
+                        "type": "integer"
+                    },
+                    "nbre_maxi": {
+                        "title": "nbre_maxi",
+                        "type": "integer"
+                    },
+                    "nbre_jeunes": {
+                        "title": "nbre_jeunes",
+                        "type": "integer"
+                    },
+                    "nbre_nouveau_ne": {
+                        "title": "nbre_nouveau_ne",
+                        "type": "integer"
+                    },
+                    "structure_groupe": {
+                        "title": "structure_groupe",
+                        "type": "string"
+                    },
+                    "sous_group": {
+                        "title": "sous_group",
+                        "type": "string"
+                    },
+                    "nbre_sous_groupes": {
+                        "title": "nbre_sous_groupes",
+                        "type": "integer"
+                    },
+                    "nbre_indiv_sous_groupe": {
+                        "title": "nbre_indiv_sous_groupe",
+                        "type": "integer"
+                    },
+                    "comportement_surface": {
+                        "title": "comportement_surface",
+                        "type": "string"
+                    },
+                    "vitesse": {
+                        "title": "vitesse",
+                        "type": "string"
+                    },
+                    "reaction_bateau": {
+                        "title": "reaction_bateau",
+                        "type": "string"
+                    },
+                    "distance_estimee": {
+                        "title": "distance_estimee",
+                        "type": "string"
+                    },
+                    "gisement": {
+                        "title": "gisement",
+                        "type": "string"
+                    },
+                    "element_detection": {
+                        "title": "element_detection",
+                        "type": "string"
+                    },
+                    "especes_associees": {
+                        "title": "especes_associees",
+                        "type": "string"
+                    },
+                    "heure_debut": {
+                        "title": "heure_debut",
+                        "type": "string"
+                    },
+                    "heure_fin": {
+                        "title": "heure_fin",
+                        "type": "string"
+                    },
+                    "location_d_latitude_deg_min_sec": {
+                        "title": "location_d_latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_d_latitude_deg_dec": {
+                        "title": "location_d_latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_d_longitude_deg_min_sec": {
+                        "title": "location_d_longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_d_longitude_deg_dec": {
+                        "title": "location_d_longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_f_latitude_deg_min_sec": {
+                        "title": "location_f_latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_f_latitude_deg_dec": {
+                        "title": "location_f_latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_f_longitude_deg_min_sec": {
+                        "title": "location_f_longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_f_longitude_deg_dec": {
+                        "title": "location_f_longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "vitesse_navire": {
+                        "title": "vitesse_navire",
+                        "type": "string"
+                    },
+                    "activites_humaines_associees": {
+                        "title": "activites_humaines_associees",
+                        "type": "string"
+                    },
+                    "effort": {
+                        "title": "effort",
+                        "type": "string"
+                    },
+                    "commentaires": {
+                        "title": "commentaires",
+                        "type": "string"
+                    },
+                    "espece_id": {
+                        "title": "espece_id",
+                        "type": "integer"
+                    },
+                    "weather_report_id": {
+                        "title": "weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Bird": {
+                "title": "Bird",
+                "description": "Bird",
+                "properties": {
+                    "nbre_estime": {
+                        "title": "nbre_estime",
+                        "type": "integer"
+                    },
+                    "presence_jeune": {
+                        "title": "presence_jeune",
+                        "type": "string"
+                    },
+                    "etat_groupe": {
+                        "title": "etat_groupe",
+                        "type": "string"
+                    },
+                    "comportement": {
+                        "title": "comportement",
+                        "type": "string"
+                    },
+                    "reaction_bateau": {
+                        "title": "reaction_bateau",
+                        "type": "string"
+                    },
+                    "distance_estimee": {
+                        "title": "distance_estimee",
+                        "type": "string"
+                    },
+                    "especes_associees": {
+                        "title": "especes_associees",
+                        "type": "string"
+                    },
+                    "heure_debut": {
+                        "title": "heure_debut",
+                        "type": "string"
+                    },
+                    "heure_fin": {
+                        "title": "heure_fin",
+                        "type": "string"
+                    },
+                    "vitesse_navire": {
+                        "title": "vitesse_navire",
+                        "type": "string"
+                    },
+                    "activites_humaines_associees": {
+                        "title": "activites_humaines_associees",
+                        "type": "string"
+                    },
+                    "effort": {
+                        "title": "effort",
+                        "type": "string"
+                    },
+                    "commentaires": {
+                        "title": "commentaires",
+                        "type": "string"
+                    },
+                    "location_d_latitude_deg_min_sec": {
+                        "title": "location_d_latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_d_latitude_deg_dec": {
+                        "title": "location_d_latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_d_longitude_deg_min_sec": {
+                        "title": "location_d_longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_d_longitude_deg_dec": {
+                        "title": "location_d_longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_f_latitude_deg_min_sec": {
+                        "title": "location_f_latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_f_latitude_deg_dec": {
+                        "title": "location_f_latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_f_longitude_deg_min_sec": {
+                        "title": "location_f_longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_f_longitude_deg_dec": {
+                        "title": "location_f_longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "espece_id": {
+                        "title": "espece_id",
+                        "type": "integer"
+                    },
+                    "weather_report_id": {
+                        "title": "weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Category": {
+                "title": "Category",
+                "description": "Category",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "name",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "description",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Dechet": {
+                "title": "Dechet",
+                "description": "Dechet",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Espece": {
+                "title": "Espece",
+                "description": "Espece",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "common_name": {
+                        "title": "common_name",
+                        "type": "string"
+                    },
+                    "scientific_name": {
+                        "title": "scientific_name",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "description",
+                        "type": "string"
+                    },
+                    "category_id": {
+                        "title": "category_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Etape": {
+                "title": "Etape",
+                "description": "Etape",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "title": "nom",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "description",
+                        "type": "string"
+                    },
+                    "heure_depart_port": {
+                        "title": "heure_depart_port",
+                        "type": "string"
+                    },
+                    "heure_arrivee_port": {
+                        "title": "heure_arrivee_port",
+                        "type": "string"
+                    },
+                    "sortie_id": {
+                        "title": "sortie_id",
+                        "type": "integer"
+                    },
+                    "point_de_passage_id": {
+                        "title": "point_de_passage_id",
+                        "type": "integer"
+                    },
+                    "departure_weather_report_id": {
+                        "title": "departure_weather_report_id",
+                        "type": "integer"
+                    },
+                    "arrival_weather_report_id": {
+                        "title": "arrival_weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Export": {
+                "title": "Export",
+                "description": "Export",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "uuid": {
+                        "title": "uuid",
+                        "type": "string"
+                    },
+                    "data": {
+                        "title": "data",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "GpsTrack": {
+                "title": "GpsTrack",
+                "description": "GpsTrack",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "longitude": {
+                        "title": "longitude",
+                        "type": "string"
+                    },
+                    "shipping_id": {
+                        "title": "shipping_id",
+                        "type": "integer"
+                    },
+                    "latitude": {
+                        "title": "latitude",
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "title": "timestamp",
+                        "type": "string"
+                    },
+                    "device": {
+                        "title": "device",
+                        "type": "string"
+                    },
+                    "inObservation": {
+                        "title": "inObservation",
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "Observateur": {
+                "title": "Observateur",
+                "description": "Observateur",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "title": "nom",
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "title": "prenom",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Observation": {
+                "title": "Observation",
+                "description": "Observation",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "title": "type",
+                        "type": "string"
+                    },
+                    "sortie_id": {
+                        "title": "sortie_id",
+                        "type": "integer"
+                    },
+                    "animal_id": {
+                        "title": "animal_id",
+                        "type": "integer"
+                    },
+                    "bird_id": {
+                        "title": "bird_id",
+                        "type": "integer"
+                    },
+                    "waste_id": {
+                        "title": "waste_id",
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PointDePassage": {
+                "title": "PointDePassage",
+                "description": "PointDePassage",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "nom": {
+                        "title": "nom",
+                        "type": "string"
+                    },
+                    "latitude_deg_min_sec": {
+                        "title": "latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "latitude_deg_dec": {
+                        "title": "latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "longitude_deg_min_sec": {
+                        "title": "longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "longitude_deg_dec": {
+                        "title": "longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "description",
+                        "type": "string"
+                    },
+                    "zone_id": {
+                        "title": "zone_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "SortieNaturascan": {
+                "title": "SortieNaturascan",
+                "description": "SortieNaturascan",
+                "properties": {
+                    "structure": {
+                        "title": "structure",
+                        "type": "string"
+                    },
+                    "port_depart": {
+                        "title": "port_depart",
+                        "type": "string"
+                    },
+                    "port_arrivee": {
+                        "title": "port_arrivee",
+                        "type": "string"
+                    },
+                    "heure_depart_port": {
+                        "title": "heure_depart_port",
+                        "type": "string"
+                    },
+                    "heure_arrivee_port": {
+                        "title": "heure_arrivee_port",
+                        "type": "string"
+                    },
+                    "duree_sortie": {
+                        "title": "duree_sortie",
+                        "type": "string"
+                    },
+                    "nbre_observateurs": {
+                        "title": "nbre_observateurs",
+                        "type": "integer"
+                    },
+                    "type_bateau": {
+                        "title": "type_bateau",
+                        "type": "string"
+                    },
+                    "nom_bateau": {
+                        "title": "nom_bateau",
+                        "type": "string"
+                    },
+                    "hauteur_bateau": {
+                        "title": "hauteur_bateau",
+                        "type": "string"
+                    },
+                    "heure_utc": {
+                        "title": "heure_utc",
+                        "type": "string"
+                    },
+                    "distance_parcourue": {
+                        "title": "distance_parcourue",
+                        "type": "string"
+                    },
+                    "superficie_echantillonnee": {
+                        "title": "superficie_echantillonnee",
+                        "type": "string"
+                    },
+                    "remarque_depart": {
+                        "title": "remarque_depart",
+                        "type": "string"
+                    },
+                    "remarque_arrivee": {
+                        "title": "remarque_arrivee",
+                        "type": "string"
+                    },
+                    "sortie_id": {
+                        "title": "sortie_id",
+                        "type": "integer"
+                    },
+                    "departure_weather_report_id": {
+                        "title": "departure_weather_report_id",
+                        "type": "integer"
+                    },
+                    "arrival_weather_report_id": {
+                        "title": "arrival_weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "SortieObservateur": {
+                "title": "SortieObservateur",
+                "description": "SortieObservateur",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "role": {
+                        "title": "role",
+                        "type": "string"
+                    },
+                    "sortie_id": {
+                        "title": "sortie_id",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "SortieObstrace": {
+                "title": "SortieObstrace",
+                "description": "SortieObstrace",
+                "properties": {
+                    "plage": {
+                        "title": "plage",
+                        "type": "string"
+                    },
+                    "nbre_observateurs": {
+                        "title": "nbre_observateurs",
+                        "type": "integer"
+                    },
+                    "suivi": {
+                        "title": "suivi",
+                        "type": "string"
+                    },
+                    "prospection_heure_debut": {
+                        "title": "prospection_heure_debut",
+                        "type": "string"
+                    },
+                    "prospection_heure_fin": {
+                        "title": "prospection_heure_fin",
+                        "type": "string"
+                    },
+                    "remark": {
+                        "title": "remark",
+                        "type": "string"
+                    },
+                    "type_bateau": {
+                        "title": "type_bateau",
+                        "type": "string"
+                    },
+                    "nom_bateau": {
+                        "title": "nom_bateau",
+                        "type": "string"
+                    },
+                    "hauteur_bateau": {
+                        "title": "hauteur_bateau",
+                        "type": "string"
+                    },
+                    "sortie_id": {
+                        "title": "sortie_id",
+                        "type": "integer"
+                    },
+                    "weather_report_id": {
+                        "title": "weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Sortie": {
+                "title": "Sortie",
+                "description": "Sortie",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "title": "type",
+                        "type": "string"
+                    },
+                    "synchronised": {
+                        "title": "synchronised",
+                        "type": "boolean"
+                    },
+                    "obstrace": {
+                        "$ref": "#/components/schemas/SortieObstrace"
+                    },
+                    "naturascan": {
+                        "$ref": "#/components/schemas/SortieNaturascan"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "name",
+                        "type": "string"
+                    },
+                    "firstname": {
+                        "title": "firstname",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "email",
+                        "type": "string"
+                    },
+                    "mobile_number": {
+                        "title": "mobile_number",
+                        "type": "string"
+                    },
+                    "adress": {
+                        "title": "adress",
+                        "type": "string"
+                    },
+                    "access": {
+                        "title": "access",
+                        "type": "string"
+                    },
+                    "pseudo": {
+                        "title": "pseudo",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Waste": {
+                "title": "Waste",
+                "description": "Waste",
+                "properties": {
+                    "nature_deche": {
+                        "title": "nature_deche",
+                        "type": "string"
+                    },
+                    "estimated_size": {
+                        "title": "estimated_size",
+                        "type": "string"
+                    },
+                    "matiere": {
+                        "title": "matiere",
+                        "type": "string"
+                    },
+                    "color": {
+                        "title": "color",
+                        "type": "string"
+                    },
+                    "deche_peche": {
+                        "title": "deche_peche",
+                        "type": "string"
+                    },
+                    "picked": {
+                        "title": "picked",
+                        "type": "string"
+                    },
+                    "heure_debut": {
+                        "title": "heure_debut",
+                        "type": "string"
+                    },
+                    "vitesse_navire": {
+                        "title": "vitesse_navire",
+                        "type": "string"
+                    },
+                    "effort": {
+                        "title": "effort",
+                        "type": "string"
+                    },
+                    "commentaires": {
+                        "title": "commentaires",
+                        "type": "string"
+                    },
+                    "location_latitude_deg_min_sec": {
+                        "title": "location_latitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_latitude_deg_dec": {
+                        "title": "location_latitude_deg_dec",
+                        "type": "string"
+                    },
+                    "location_longitude_deg_min_sec": {
+                        "title": "location_longitude_deg_min_sec",
+                        "type": "string"
+                    },
+                    "location_longitude_deg_dec": {
+                        "title": "location_longitude_deg_dec",
+                        "type": "string"
+                    },
+                    "weather_report_id": {
+                        "title": "weather_report_id",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "WeatherReport": {
+                "title": "WeatherReport",
+                "description": "WeatherReport",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "city": {
+                        "title": "city",
+                        "type": "string"
+                    },
+                    "temperature": {
+                        "title": "temperature",
+                        "type": "string"
+                    },
+                    "humidity": {
+                        "title": "humidity",
+                        "type": "string"
+                    },
+                    "weather": {
+                        "title": "weather",
+                        "type": "string"
+                    },
+                    "wind_speed": {
+                        "title": "wind_speed",
+                        "type": "string"
+                    },
+                    "wind_direction": {
+                        "title": "wind_direction",
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Zone": {
+                "title": "Zone",
+                "description": "Zone",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "title": "name",
+                        "type": "string"
+                    },
+                    "nbre_points": {
+                        "title": "nbre_points",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}

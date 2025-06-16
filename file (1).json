@@ -1,0 +1,293 @@
+{
+    "data": {
+        "id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+        "type": "Naturascan",
+        "date": 1715540156541,
+        "photo": null,
+        "naturascan": {
+            "zone": 1,
+            "structure": null,
+            "port_depart": "Cgitib",
+            "port_arrivee": null,
+            "heure_depart_port": 1715540156543,
+            "heure_arrivee_port": null,
+            "hauteur_bateau": 5.0,
+            "heure_debut_observation": 1715543702613,
+            "heure_fin_observaton": 1715543715450,
+            "duree_observation": null,
+            "duree_sortie": null,
+            "responsable": null,
+            "skipper": [
+                "1187bd6d-d739-4aed-a777-07ba080b254e"
+            ],
+            "photographe": [
+                "1187bd6d-d739-4aed-a777-07ba080b254e"
+            ],
+            "observateurs": [
+                "1187bd6d-d739-4aed-a777-07ba080b254e"
+            ],
+            "other_user": [
+                "1187bd6d-d739-4aed-a777-07ba080b254e"
+            ],
+            "nbre_observateurs": 1,
+            "type_bateau": null,
+            "nom_bateau": null,
+            "heure_utc": null,
+            "distance_parcourue": null,
+            "remarque_depart": null,
+            "remarque_arrivee": null,
+            "superficie_echantillonnee": 0.0,
+            "departure_weather_report": {
+                "id": "700e76e4-702b-46e0-8dc2-6982af3b5197",
+                "sea_state": "Agitée (1.25 à 2.5 m)",
+                "cloud_cover": "Pluie forte",
+                "visibility": "Brouillard",
+                "wind_force": "Bonne brise",
+                "wind_direction": "Sud-Est vers Ouest",
+                "wind_speed": null
+            },
+            "arrival_weather_report": {
+                "id": "725255c9-a476-4836-80d1-4de5a59fde8b",
+                "sea_state": "Forte (2.5 à 4.0 m)",
+                "cloud_cover": "Pluie forte",
+                "visibility": "Brouillard",
+                "wind_force": "Bonne brise",
+                "wind_direction": "Sud-Est vers Ouest",
+                "wind_speed": null
+            },
+            "marked": 1,
+            "etapes": [
+                {
+                    "id": "cf7de8e5-32bc-404d-b83e-509dd7bc1fff",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "nom": "Step ",
+                    "description": "",
+                    "heure_depart_port": 1715540186663,
+                    "heure_arrivee_port": 1715540186663,
+                    "point_de_passage": {
+                        "id": "46f09a5f-04e6-4a17-be71-17ad8cc78a32",
+                        "nom": "",
+                        "latitude": "null",
+                        "longitude": "null",
+                        "description": "",
+                        "zone_id": null
+                    },
+                    "departure_weather_report": {
+                        "id": "5a2c0e3a-3932-4417-abb5-8091560a2b1e",
+                        "sea_state": "Agitée (1.25 à 2.5 m)",
+                        "cloud_cover": "Pluie forte",
+                        "visibility": "Brouillard",
+                        "wind_force": "Bonne brise",
+                        "wind_direction": "Sud-Est vers Ouest",
+                        "wind_speed": "Bonne brise"
+                    },
+                    "arrival_weather_report": {
+                        "id": "9fc6469c-26ae-40d3-8d08-2fa6fead20d0",
+                        "sea_state": "Agitée (1.25 à 2.5 m)",
+                        "cloud_cover": "Pluie forte",
+                        "visibility": "Brouillard",
+                        "wind_force": "Bonne brise",
+                        "wind_direction": "Sud-Est vers Ouest",
+                        "wind_speed": "Bonne brise"
+                    }
+                }
+            ],
+            "observations": [
+                {
+                    "id": "2032f24a-3ce7-4bb4-98dc-91498e6af8ed",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "date": 1715540402212,
+                    "type": 2,
+                    "animal": null,
+                    "bird": null,
+                    "waste": {
+                        "nature_deche": "Deche de pêche ",
+                        "estimated_size": "5",
+                        "matiere": "Sachet",
+                        "color": "Nour ",
+                        "deche_peche": 1,
+                        "picked": 1,
+                        "heure_debut": 1715540402213,
+                        "location": {
+                            "longitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            },
+                            "latitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            }
+                        },
+                        "vitesse_navire": "50",
+                        "images": null,
+                        "weather_report": {
+                            "id": "null",
+                            "sea_state": "Forte (2.5 à 4.0 m)",
+                            "cloud_cover": "Pluie forte",
+                            "visibility": "Brouillard",
+                            "wind_force": "Sud-Est vers Ouest",
+                            "wind_direction": "Sud-Est vers Ouest",
+                            "wind_speed": "Bonne brise"
+                        },
+                        "effort": false,
+                        "commentaires": null,
+                        "photos": false
+                    },
+                    "created_at": "2024-05-12T20:00:02.245242"
+                },
+                {
+                    "id": "2c952a71-d244-4ff1-9c6c-0cc2f5ef07a0",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "date": 1715540346924,
+                    "type": 0,
+                    "animal": {
+                        "espece": null,
+                        "taille": "Grand ",
+                        "nbre_estime": 2,
+                        "nbre_mini": 1,
+                        "nbre_maxi": 3,
+                        "nbre_jeunes": 2,
+                        "nbre_nouveau_ne": 2,
+                        "structure_groupe": "Grille",
+                        "sous_group": true,
+                        "nbre_sous_groupes": 2,
+                        "nbre_indiv_sous_groupe": 1,
+                        "comportement_surface": "Nage,Respirer",
+                        "vitesse": "Stationnaire",
+                        "reaction_bateau": "Attraction",
+                        "distance_estimee": "<500 m",
+                        "gisement": "Hgg",
+                        "element_detection": "Splash",
+                        "especes_associees": "Cggj",
+                        "heure_debut": 1715540346927,
+                        "heure_fin": 1715540346927,
+                        "location_d": {
+                            "longitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            },
+                            "latitude": {
+                                "deg_min_sec": "6° 28' 3579\" N",
+                                "deg_dec": 6.4832402
+                            }
+                        },
+                        "location_f": {
+                            "longitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            },
+                            "latitude": {
+                                "deg_min_sec": "6° 28' 3579\" N",
+                                "deg_dec": 6.4832402
+                            }
+                        },
+                        "vitesse_navire": "6",
+                        "weather_report": {
+                            "id": "null",
+                            "sea_state": "Forte (2.5 à 4.0 m)",
+                            "cloud_cover": "Pluie forte",
+                            "visibility": "Brouillard",
+                            "wind_force": "Sud-Est vers Ouest",
+                            "wind_direction": "Sud-Est vers Ouest",
+                            "wind_speed": "Bonne brise"
+                        },
+                        "activites_humaines_associees": null,
+                        "effort": false,
+                        "commentaires": null,
+                        "photos": false,
+                        "images": null
+                    },
+                    "bird": null,
+                    "waste": null,
+                    "created_at": "2024-05-12T19:59:06.939327"
+                },
+                {
+                    "id": "b1c353e1-57f6-4674-8b0f-2698d926e474",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "date": 1715540244651,
+                    "type": 1,
+                    "animal": null,
+                    "bird": {
+                        "espece": null,
+                        "nbre_estime": 5,
+                        "presence_jeune": false,
+                        "etat_groupe": "Sous-groupe",
+                        "comportement": "Vol,Posé sur l'eau",
+                        "reaction_bateau": "Attraction",
+                        "distance_estimee": "<500 m",
+                        "especes_associees": "Hg",
+                        "heure_debut": 1715540244652,
+                        "heure_fin": 1715540244652,
+                        "location_d": {
+                            "longitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            },
+                            "latitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            }
+                        },
+                        "location_f": {
+                            "longitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            },
+                            "latitude": {
+                                "deg_min_sec": "2° 20' 3116\" N",
+                                "deg_dec": 2.3477609
+                            }
+                        },
+                        "vitesse_navire": "52",
+                        "weather_report": {
+                            "id": "null",
+                            "sea_state": "Forte (2.5 à 4.0 m)",
+                            "cloud_cover": "Pluie forte",
+                            "visibility": "Brouillard",
+                            "wind_force": "Sud-Est vers Ouest",
+                            "wind_direction": "Sud-Est vers Ouest",
+                            "wind_speed": "Bonne brise"
+                        },
+                        "activites_humaines_associees": null,
+                        "effort": false,
+                        "commentaires": null,
+                        "photos": false,
+                        "images": null
+                    },
+                    "waste": null,
+                    "created_at": "2024-05-12T19:57:24.662896"
+                }
+            ],
+            "gps": [
+                {
+                    "id": "fe4050d9-78a2-4e5d-87e0-6d12d99d0c0a",
+                    "longitude": 2.347762,
+                    "latitude": 6.4832401,
+                    "device": "GPS_device_1",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "inObservation": true
+                },
+                {
+                    "id": "8244afb4-de12-4fa7-925c-084f1331ff5b",
+                    "longitude": 2.347762,
+                    "latitude": 6.4832401,
+                    "device": "GPS_device_1",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "inObservation": true
+                },
+                {
+                    "id": "10a97e97-5da6-4204-8ace-cdb7903b681c",
+                    "longitude": 2.347762,
+                    "latitude": 6.4832401,
+                    "device": "GPS_device_1",
+                    "shipping_id": "c9f65081-5b5a-4fea-839e-680c3f3de516",
+                    "inObservation": true
+                }
+            ]
+        },
+        "obstrace": null,
+        "finished": 1,
+        "synchronised": 0,
+        "created_at": "2024-05-12T19:55:56.554359"
+    }
+}

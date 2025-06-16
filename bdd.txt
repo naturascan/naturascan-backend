@@ -1,0 +1,32 @@
+users(id, first_name,last_name, description, pseudo, email,role, password, remember_token)
+
+course_categories(id, course_id, categorie_id)
+categories(id, name,slug,type)
+article_categories(id, article_id, categorie_id)
+
+tools(id, name,photo)
+style(id , name)
+
+prof(sytle_musique, instrument, niveau)
+prof_tool()
+
+lessons(id, title, video,view, course_id)
+
+courses(id, title, description,view, slug, tool_id, user_id)
+articles(id, title, content,view user_id,slug)
+likes(id, user_id, type_id ,type)
+comments(id, content, user_id, type_id,type)
+notifications(id, user_id, content, read_at)
+
+notes(id,note,course_id,user_id)
+
+user_badges(id,badge_id,user_id)
+badges(id,icon,name)
+
+messages(id, sender_id, receiver_id, content)
+
+important : type[articles,courses]
+
+
+
+
