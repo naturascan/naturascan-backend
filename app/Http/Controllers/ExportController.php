@@ -33,7 +33,7 @@ class ExportController extends Controller
         $user_id = auth()->user()->id;
         $export = Export::where('user_id', $user_id)->get();
 
-        $admin_emails = ['sogbossimichee4@gmail.com'];
+        $admin_emails = ['appli.naturascan@gmail.com'];
 
         // check if user email is in admin_emails
         if (in_array(auth()->user()->email, $admin_emails)) {
@@ -61,7 +61,7 @@ class ExportController extends Controller
     public function exportExcel()
     {
         set_time_limit(30000);
-
+        
         // $exports = Export::orderBy('id', 'desc')->get();
         // get all exports ordered by created_at
         $exports = Export::orderBy('created_at', 'desc')->get();
@@ -318,19 +318,19 @@ class ExportController extends Controller
         $user_email = auth()->user()->email;
 
         // Envoyer l'email avec le fichier en pièce jointe
-         $email = "s.catteau@marineland.fr";
+         $email = "S.catteau@association-emergence.fr";
 
         // $email = "hidi9867@gmail.com";
         //$email = "gillesakakpo01@gmail.com";
         // Mail::to($email)->send(new ExportExcelMail($tempFile));
 
         Mail::to($email)->send(new ExportExcelMail($tempFile, $trace_tempFile));
-     Mail::to($email)->bcc('gillesakakpo01@gmail.com')->bcc('sogbossimichee4@gmail.com')->send(new ExportExcelMail($tempFile, $trace_tempFile));
+        Mail::to($email)->bcc('appli.naturascan@gmail.com')->send(new ExportExcelMail($tempFile, $trace_tempFile));
         // Mail::to($user_email)->bcc('gillesakakpo01@gmail.com')->bcc('sogbossimichee4@gmail.com')->bcc('s.catteau@marineland.fr')->send(new ExportExcelMail($tempFile));
         // Supprimer le fichier temporaire
 
-        unlink($tempFile);
-        unlink($trace_tempFile);
+        // unlink($tempFile);
+        // unlink($trace_tempFile);
 
         return response()->json(['message' => 'Email sent successfully']);
     }
