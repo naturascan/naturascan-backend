@@ -33,7 +33,7 @@ class ExportController extends Controller
         $user_id = auth()->user()->id;
         $export = Export::where('user_id', $user_id)->get();
 
-        $admin_emails = ['appli.naturascan@gmail.com'];
+        $admin_emails = ['sogbossimichee4@gmail.com'];
 
         // check if user email is in admin_emails
         if (in_array(auth()->user()->email, $admin_emails)) {
@@ -61,7 +61,7 @@ class ExportController extends Controller
     public function exportExcel()
     {
         set_time_limit(30000);
-        
+
         // $exports = Export::orderBy('id', 'desc')->get();
         // get all exports ordered by created_at
         $exports = Export::orderBy('created_at', 'desc')->get();
@@ -257,6 +257,7 @@ class ExportController extends Controller
                     $trace_sheet->setCellValue('U' . $row, $trace['esclavation']);
                     // email
                     $trace_sheet->setCellValue('V' . $row, $trace['email']);
+                    $trace_sheet->setCellValue('W' . $row, $trace['gps']);
                     $row++;
 
                 }
@@ -318,7 +319,9 @@ class ExportController extends Controller
         $user_email = auth()->user()->email;
 
         // Envoyer l'email avec le fichier en pièce jointe
-         $email = "S.catteau@association-emergence.fr";
+        //$email = "S.catteau@association-emergence.fr";
+        $email = "dellielo03@gmail.com";
+
 
         // $email = "hidi9867@gmail.com";
         //$email = "gillesakakpo01@gmail.com";
@@ -387,7 +390,9 @@ class ExportController extends Controller
                 $trace['esclavation'] = "-";
                 // email
                 $trace['email'] = $email ;
+                $trace['gps'] = $prospection['gps']  ;
                 $traces[] = $trace;
+                
 
             }else{
                 foreach($trace_datas as $trace_data){ 
@@ -427,6 +432,7 @@ class ExportController extends Controller
                     $trace['emergence'] = $emergence;
                     $trace['esclavation'] = $esclavation;
                     $trace['email'] = $email ;
+                    $trace['gps'] = $prospection['gps']  ;
                     $traces[] = $trace;
     
                 }
@@ -487,6 +493,7 @@ class ExportController extends Controller
             $trace['emergence'] = $emergence;
             $trace['esclavation'] = $esclavation;
             $trace['email'] = $email ;
+            $trace['gps'] = $prospection['gps']  ;
             return $trace;
            
         }

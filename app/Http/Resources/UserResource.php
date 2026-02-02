@@ -41,7 +41,7 @@ class UserResource extends JsonResource
 
     public function get_access(){
 
-        $admin_emails = ['appli.naturascan@gmail.com','S.catteau@association-emergence.fr'];
+        $admin_emails = ['sogbossimichee4@gmail.com','s.catteau@marineland.fr','admin@yopmail.com'];
 
         if (in_array(auth()->user()->email, $admin_emails)) {
             return 0;
